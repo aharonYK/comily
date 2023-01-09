@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
   const [data, setData] = useState({});
+  const navigator = useNavigate()
   const handelSubmit = async () => {
     console.log(data);
     const resulte = await axios.post("http://localhost:3002/api/login", data);
@@ -11,6 +13,7 @@ const Login = () => {
     console.log(resulte.data);
 
     localStorage.setItem("token", resulte.data);
+    navigator('/comments')
   };
 
   return (

@@ -1,16 +1,20 @@
 import React, { Fragment } from "react";
 import { useState } from "react";
 import axios from "axios";
+import { useNavigate } from 'react-router-dom';
 
 const Register = () => {
   const [newUser, setNewUser] = useState({});
+  const navigator = useNavigate()
   const handelSubmit = async () => {
+    
     const { data } = await axios.post(
       "http://localhost:3002/api/users",
       newUser
     );
     console.log(data);
     setNewUser({});
+    navigator('/comments')
   };
 
   return (
